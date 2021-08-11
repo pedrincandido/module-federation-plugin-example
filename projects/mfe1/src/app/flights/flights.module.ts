@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlightsSearchComponent } from './flights-search/flights-search.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FLIGHTS_ROUTES } from './flights.routes';
-import { AuthLibModule } from 'auth-lib';
+import { NgxsModule } from '@ngxs/store';
+import { AuthLibModule, AuthState } from 'auth-lib';
 import { SharedLibModule } from 'shared-lib';
+import { FlightsSearchComponent } from './flights-search/flights-search.component';
+import { FLIGHTS_ROUTES } from './flights.routes';
 
 @NgModule({
   imports: [
     CommonModule,
     AuthLibModule,
     SharedLibModule,
-    RouterModule.forChild(FLIGHTS_ROUTES)
+    NgxsModule.forFeature([AuthState]),
+    RouterModule.forChild(FLIGHTS_ROUTES),
   ],
-  declarations: [
-    FlightsSearchComponent
-  ]
+  declarations: [FlightsSearchComponent],
 })
-export class FlightsModule { }
+export class FlightsModule {}
